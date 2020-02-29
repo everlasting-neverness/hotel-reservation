@@ -28,7 +28,11 @@ export default class Navbar extends Component {
                             <FaAlignRight className='nav-icon' />
                         </button>
                     </div>
-                    <ul className={`nav-links ${this.state.isOpen ? 'show-nav' : ''}`}>
+                    <ul
+                        className={`nav-links ${
+                            this.state.isOpen ? 'show-nav' : ''
+                        }`}
+                    >
                         <li>
                             <Link to='/'>Home</Link>
                         </li>
