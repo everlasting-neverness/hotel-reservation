@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-
+import Hero from '../components/Hero';
 export default class SingleRoom extends Component {
     render() {
         return (
-            <div>
-                SingleRoom
-            </div>
-        )
+            <Hero hero="roomsHero">
+                <div>SingleRoom</div>
+            </Hero>
+        );
     }
 }
