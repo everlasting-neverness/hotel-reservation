@@ -1,9 +1,17 @@
-import React from 'react'
+import React from 'react';
+import Room from './Room';
 
-export default function RoomsList() {
+export default function RoomsList({ rooms }) {
+
+    if (!rooms) {
+        return null;
+    }
+
     return (
-        <div>
-            List
+        <div className='roomslist-center'>
+            {rooms.map(room => (
+                <Room key={room.id} room={room} />
+            ))}
         </div>
     )
 }
