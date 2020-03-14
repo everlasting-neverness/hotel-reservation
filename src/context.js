@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import items from './data';
 
 const RoomContext = React.createContext();
 
@@ -20,7 +19,20 @@ class RoomProvider extends Component {
         pets: false
     };
 
-    componentDidMount() {
+    getData = async () => {
+        try {
+            let response = await import('./data.js');
+            if (response && response.default) {
+                return this.handleData(response.default);
+            } else {
+                return this.handleData([]);
+            }
+        } catch (error) {
+            console.error('Error', error);
+        }
+    };
+
+    handleData = items => {
         let rooms = this.formatData(items),
             featuredRooms = rooms.filter(room => room.featured === true),
             maxPrice = [Math.max(...rooms.map(item => item.price))],
@@ -35,6 +47,10 @@ class RoomProvider extends Component {
             maxPrice,
             maxSize
         });
+    };
+
+    componentDidMount() {
+        this.getData();
     }
 
     formatData(items) {
